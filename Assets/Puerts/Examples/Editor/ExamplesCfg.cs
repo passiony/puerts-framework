@@ -8,18 +8,7 @@
 using System.Collections.Generic;
 using Puerts;
 using System;
-using System.Linq;
-using System.Reflection;
-using System.Reflection.Emit;
-using AssetBundles;
-using TMPro;
 using UnityEngine;
-using UnityEngine.Events;
-using UnityEngine.EventSystems;
-using UnityEngine.SceneManagement;
-using UnityEngine.UI;
-using Logger = Common.Logger;
-using Object = UnityEngine.Object;
 
 //1、配置类必须打[Configure]标签
 //2、必须放Editor目录
@@ -31,82 +20,53 @@ public class ExamplesCfg
     {
         get
         {
-                        var list = new List<Type>()
+            return new List<Type>()
             {
                 typeof(Debug),
                 typeof(Vector3),
-                typeof(Vector2),
                 typeof(List<int>),
-                //typeof(Dictionary<string, int>),
+                typeof(Dictionary<string, List<int>>),
                 typeof(Time),
                 typeof(Transform),
                 typeof(Component),
                 typeof(GameObject),
-                typeof(Object),
+                typeof(UnityEngine.Object),
                 typeof(Delegate),
                 typeof(System.Object),
                 typeof(Type),
                 typeof(ParticleSystem),
                 typeof(Canvas),
-                typeof(CanvasGroup),
                 typeof(RenderMode),
                 typeof(Behaviour),
                 typeof(MonoBehaviour),
 
-                typeof(RectTransform),
-                typeof(UIBehaviour),
-                typeof(Selectable),
-                typeof(Button),
-                typeof(Button.ButtonClickedEvent),
-                typeof(UnityEvent),
-                typeof(InputField),
-                typeof(Slider),
-                typeof(Toggle),
-                typeof(Toggle.ToggleEvent),
-                typeof(ScrollRect),
-                typeof(CanvasScaler),
-                typeof(GraphicRaycaster),
-                typeof(UnityEvent<bool>),
-                typeof(Resources),
-                typeof(Application),
-                typeof(TextAsset),
-                typeof(TMP_Text),
-                typeof(Text),
-                typeof(Image),
-                typeof(MonoSingleton<AssetBundleManager>),
-                typeof(PlayerPrefs),
+                typeof(UnityEngine.EventSystems.UIBehaviour),
+                typeof(UnityEngine.UI.Selectable),
+                typeof(UnityEngine.UI.Button),
+                typeof(UnityEngine.UI.Button.ButtonClickedEvent),
+                typeof(UnityEngine.Events.UnityEvent),
+                typeof(UnityEngine.UI.InputField),
+                typeof(UnityEngine.UI.Toggle),
+                typeof(UnityEngine.UI.Toggle.ToggleEvent),
+                typeof(UnityEngine.Events.UnityEvent<bool>),
 
-                typeof(SceneManager),
-                typeof(Scene),
-                typeof(LoadSceneMode),
-                typeof(AsyncOperation),
-
-                typeof(PuertsManager),
-                typeof(GameLaunch),
-                typeof(Logger),
-                typeof(AssetBundleManager),
-                typeof(BaseLoader),
-                typeof(BaseAssetRequester),
-                typeof(BaseAssetAsyncLoader),
-                typeof(BaseAssetBundleAsyncLoader),
+                typeof(PuertsDeclareTest.Plants.pumkinPeaShooter),
+                typeof(PuertsDeclareTest.Plants.Shootable),
+                typeof(PuertsDeclareTest.Zombies.Walkable),
+                typeof(PuertsDeclareTest.Zombies.Flyable),
+                typeof(PuertsDeclareTest.Zombies.BalloonZombie),
+                
+                typeof(PuertsTest.TestClass),
+                typeof(PuertsTest.BaseClass),
+                typeof(PuertsTest.DerivedClass),
+                typeof(PuertsTest.BaseClassExtension),
+                typeof(PuertsTest.MyEnum),
             };
-
-            List<string> namespaces = new List<string>()
-            {
-                "DG.Tweening"
-            };
-
-            Assembly[] ass = AppDomain.CurrentDomain.GetAssemblies();
-            list.AddRange((from assembly in ass
-                where !(assembly.ManifestModule is ModuleBuilder)
-                from type in assembly.GetExportedTypes()
-                where type.Namespace != null && namespaces.Contains(type.Namespace)
-                      && type.BaseType != typeof(MulticastDelegate) && !type.IsEnum
-                select type));
-            return list;
         }
     }
 
+    
+    //打开这个可以优化Vector3的GC，但需要开启unsafe编译
     [BlittableCopy]
     static IEnumerable<Type> Blittables
     {
@@ -114,8 +74,8 @@ public class ExamplesCfg
         {
             return new List<Type>()
             {
-                //打开这个可以优化Vector3的GC，但需要开启unsafe编译
-                //typeof(Vector3),
+                typeof(Vector3),
+                typeof(Quaternion),
             };
         }
     }

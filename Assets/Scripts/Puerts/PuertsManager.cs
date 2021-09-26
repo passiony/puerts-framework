@@ -1,6 +1,7 @@
 ﻿using System;
 using AssetBundles;
 using Common;
+using UnityEngine.SceneManagement;
 
 namespace Puerts
 {
@@ -36,6 +37,12 @@ namespace Puerts
         {
             jsEnv = new JsEnv(new CustomLoader(),8080);
 //            jsEnv.WaitDebugger();
+
+            //声明Action： 值类型才需要这样添加
+            jsEnv.UsingAction<float>();
+            jsEnv.UsingAction<float, float>();
+            jsEnv.UsingAction<string, byte[]>();
+            jsEnv.UsingAction<Scene, LoadSceneMode>();
             HasGameStart = false;
         }
 
