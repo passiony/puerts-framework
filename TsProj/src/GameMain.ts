@@ -1,7 +1,9 @@
 //部署:npm run build
 
 import {UnityEngine} from 'csharp'
-import {MainTest} from "./UnitTest/MainTest";
+import { SceneManager } from './framework/scene/SceneManager';
+import { SceneConfigs } from './game/scenes/config/SceneConfig';
+import UnityTs from './framework/UnityTs';
 
 /**
  * 游戏入口
@@ -11,6 +13,7 @@ import {MainTest} from "./UnitTest/MainTest";
     constructor() {
         console.log("JavaScript start running!!");
         //初始化框架
+        UnityTs.init()
         this.StartGame().then(() => {
             console.log("game start!!");
         });
@@ -22,6 +25,7 @@ import {MainTest} from "./UnitTest/MainTest";
      */
     async StartGame() {
         //启动游戏
+        SceneManager.Instance.switchScene(SceneConfigs.HomeScene)
         MainTest.Run();
     }
 }
