@@ -1,147 +1,148 @@
-﻿using UnityEngine;
-using System.Collections;
-using System.IO;
+﻿using System.IO;
 using System.Text;
 using System;
 
-public class ByteBuffer
+namespace Networks
 {
-    MemoryStream stream = null;
-    BinaryWriter writer = null;
-    BinaryReader reader = null;
-
-    public ByteBuffer()
+    public class ByteBuffer
     {
-        stream = new MemoryStream();
-        writer = new BinaryWriter(stream);
-    }
+        MemoryStream stream = null;
+        BinaryWriter writer = null;
+        BinaryReader reader = null;
 
-    public ByteBuffer(byte[] data)
-    {
-        if (data != null)
-        {
-            stream = new MemoryStream(data);
-            reader = new BinaryReader(stream);
-        }
-        else
+        public ByteBuffer()
         {
             stream = new MemoryStream();
             writer = new BinaryWriter(stream);
         }
-    }
 
-    public void Close()
-    {
-        if (writer != null) writer.Close();
-        if (reader != null) reader.Close();
+        public ByteBuffer(byte[] data)
+        {
+            if (data != null)
+            {
+                stream = new MemoryStream(data);
+                reader = new BinaryReader(stream);
+            }
+            else
+            {
+                stream = new MemoryStream();
+                writer = new BinaryWriter(stream);
+            }
+        }
 
-        stream.Close();
-        writer = null;
-        reader = null;
-        stream = null;
-    }
+        public void Close()
+        {
+            if (writer != null) writer.Close();
+            if (reader != null) reader.Close();
 
-    public void WriteByte(byte v)
-    {
-        writer.Write(v);
-    }
+            stream.Close();
+            writer = null;
+            reader = null;
+            stream = null;
+        }
 
-    public void WriteInt(int v)
-    {
-        writer.Write((int)v);
-    }
+        public void WriteByte(byte v)
+        {
+            writer.Write(v);
+        }
 
-    public void WriteShort(ushort v)
-    {
-        writer.Write((ushort)v);
-    }
+        public void WriteInt(int v)
+        {
+            writer.Write((int) v);
+        }
 
-    public void WriteLong(long v)
-    {
-        writer.Write((long)v);
-    }
+        public void WriteShort(ushort v)
+        {
+            writer.Write((ushort) v);
+        }
 
-    public void WriteFloat(float v)
-    {
-        byte[] temp = BitConverter.GetBytes(v);
-        Array.Reverse(temp);
-        writer.Write(BitConverter.ToSingle(temp, 0));
-    }
+        public void WriteLong(long v)
+        {
+            writer.Write((long) v);
+        }
 
-    public void WriteDouble(double v)
-    {
-        byte[] temp = BitConverter.GetBytes(v);
-        Array.Reverse(temp);
-        writer.Write(BitConverter.ToDouble(temp, 0));
-    }
+        public void WriteFloat(float v)
+        {
+            byte[] temp = BitConverter.GetBytes(v);
+            Array.Reverse(temp);
+            writer.Write(BitConverter.ToSingle(temp, 0));
+        }
 
-    public void WriteString(string v)
-    {
-        byte[] bytes = Encoding.UTF8.GetBytes(v);
-        writer.Write(bytes);
-    }
+        public void WriteDouble(double v)
+        {
+            byte[] temp = BitConverter.GetBytes(v);
+            Array.Reverse(temp);
+            writer.Write(BitConverter.ToDouble(temp, 0));
+        }
 
-    public void WriteBytes(byte[] v)
-    {
-        writer.Write(v);
-    }
+        public void WriteString(string v)
+        {
+            byte[] bytes = Encoding.UTF8.GetBytes(v);
+            writer.Write(bytes);
+        }
 
-    public byte ReadByte()
-    {
-        return reader.ReadByte();
-    }
+        public void WriteBytes(byte[] v)
+        {
+            writer.Write(v);
+        }
 
-    public int ReadInt()
-    {
-        return (int)reader.ReadInt32();
-    }
+        public byte ReadByte()
+        {
+            return reader.ReadByte();
+        }
 
-    public ushort ReadShort()
-    {
-        return (ushort)reader.ReadInt16();
-    }
+        public int ReadInt()
+        {
+            return (int) reader.ReadInt32();
+        }
 
-    public long ReadLong()
-    {
-        return (long)reader.ReadInt64();
-    }
+        public ushort ReadShort()
+        {
+            return (ushort) reader.ReadInt16();
+        }
 
-    public float ReadFloat()
-    {
-        byte[] temp = BitConverter.GetBytes(reader.ReadSingle());
-        Array.Reverse(temp);
-        return BitConverter.ToSingle(temp, 0);
-    }
+        public long ReadLong()
+        {
+            return (long) reader.ReadInt64();
+        }
 
-    public double ReadDouble()
-    {
-        byte[] temp = BitConverter.GetBytes(reader.ReadDouble());
-        Array.Reverse(temp);
-        return BitConverter.ToDouble(temp, 0);
-    }
+        public float ReadFloat()
+        {
+            byte[] temp = BitConverter.GetBytes(reader.ReadSingle());
+            Array.Reverse(temp);
+            return BitConverter.ToSingle(temp, 0);
+        }
 
-    public string ReadString()
-    {
-        int len = (int)(stream.Length - stream.Position);
-        byte[] buffer = new byte[len];
-        buffer = reader.ReadBytes(len);
-        return Encoding.UTF8.GetString(buffer);
-    }
+        public double ReadDouble()
+        {
+            byte[] temp = BitConverter.GetBytes(reader.ReadDouble());
+            Array.Reverse(temp);
+            return BitConverter.ToDouble(temp, 0);
+        }
 
-    public byte[] ReadBytes()
-    {
-        int len = (int)(stream.Length - stream.Position);
-        return reader.ReadBytes(len);
-    }
+        public string ReadString()
+        {
+            int len = (int) (stream.Length - stream.Position);
+            byte[] buffer = new byte[len];
+            buffer = reader.ReadBytes(len);
+            return Encoding.UTF8.GetString(buffer);
+        }
 
-    public byte[] ToBytes()
-    {
-        writer.Flush();
-        return stream.ToArray();
-    }
+        public byte[] ReadBytes()
+        {
+            int len = (int) (stream.Length - stream.Position);
+            return reader.ReadBytes(len);
+        }
 
-    public void Flush()
-    {
-        writer.Flush();
+        public byte[] ToBytes()
+        {
+            writer.Flush();
+            return stream.ToArray();
+        }
+
+        public void Flush()
+        {
+            writer.Flush();
+        }
     }
 }

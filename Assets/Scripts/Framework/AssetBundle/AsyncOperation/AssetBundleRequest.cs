@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using Logger = Common.Logger;
 
 /// <summary>
 /// added by wsh @ 2017.12.22

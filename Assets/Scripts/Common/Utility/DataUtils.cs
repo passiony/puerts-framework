@@ -1,51 +1,52 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections;
-using System.IO;
 
-public class DataUtils
+namespace Common
 {
-    public static void CopyBytes(byte[] copyTo, int offsetTo, byte[] copyFrom, int offsetFrom, int count)
+    public class DataUtils
     {
-        Array.Copy(copyFrom, offsetFrom, copyTo, offsetTo, count);
-    }
-    
-    public static byte[] StringToBytes(string str)
-    {
-        return System.Text.Encoding.Default.GetBytes(str);
-    }
-
-    public static byte[] StringToUTFBytes(string str)
-    {
-        return System.Text.Encoding.UTF8.GetBytes(str);
-    }
-
-    public static string BytesToString(byte[] bytes)
-    {
-        return System.Text.Encoding.Default.GetString(bytes).Trim();
-    }
-
-    public static Hashtable HttpGetInfo(string info)
-    {
-        if (string.IsNullOrEmpty(info))
+        public static void CopyBytes(byte[] copyTo, int offsetTo, byte[] copyFrom, int offsetFrom, int count)
         {
-            return null;
+            Array.Copy(copyFrom, offsetFrom, copyTo, offsetTo, count);
+        }
+    
+        public static byte[] StringToBytes(string str)
+        {
+            return System.Text.Encoding.Default.GetBytes(str);
         }
 
-        Hashtable table = new Hashtable();
-        string[] paramList = info.Split('&');
-        for (int i = 0; i < paramList.Length; i++)
+        public static byte[] StringToUTFBytes(string str)
         {
-            string[] keyAndValue = paramList[i].Split('=');
-            if (keyAndValue.Length >= 2)
+            return System.Text.Encoding.UTF8.GetBytes(str);
+        }
+
+        public static string BytesToString(byte[] bytes)
+        {
+            return System.Text.Encoding.Default.GetString(bytes).Trim();
+        }
+
+        public static Hashtable HttpGetInfo(string info)
+        {
+            if (string.IsNullOrEmpty(info))
             {
-                if (!table.ContainsKey(keyAndValue[0]))
+                return null;
+            }
+
+            Hashtable table = new Hashtable();
+            string[] paramList = info.Split('&');
+            for (int i = 0; i < paramList.Length; i++)
+            {
+                string[] keyAndValue = paramList[i].Split('=');
+                if (keyAndValue.Length >= 2)
                 {
-                    table.Add(keyAndValue[0], keyAndValue[1]);
+                    if (!table.ContainsKey(keyAndValue[0]))
+                    {
+                        table.Add(keyAndValue[0], keyAndValue[1]);
+                    }
                 }
             }
-        }
 
-        return table;
+            return table;
+        }
     }
 }

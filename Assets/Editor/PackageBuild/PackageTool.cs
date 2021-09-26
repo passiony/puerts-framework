@@ -6,6 +6,7 @@ using AssetBundles;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Common;
 
 /// <summary>
 /// added by wsh @ 2018.01.03

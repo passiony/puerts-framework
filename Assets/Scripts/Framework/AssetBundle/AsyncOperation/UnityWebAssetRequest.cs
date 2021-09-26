@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
+using Logger = Common.Logger;
 
 /// <summary>
 /// added by wsh @ 2017.12.22

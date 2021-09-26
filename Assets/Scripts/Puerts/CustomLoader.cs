@@ -1,6 +1,8 @@
 ﻿using System.IO;
 using AssetBundles;
+using Common;
 using UnityEngine;
+using Logger = Common.Logger;
 
 namespace Puerts
 {

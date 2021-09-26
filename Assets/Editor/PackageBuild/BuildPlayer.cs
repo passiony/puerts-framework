@@ -7,6 +7,7 @@ using AssetBundles;
 using System;
 using System.Linq;
 using System.Text;
+using Common;
 
 /// <summary>
 /// added by wsh @ 2018.01.03

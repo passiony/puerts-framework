@@ -7,6 +7,8 @@ using UnityEngine;
 using System.Collections.Generic;
 using System.Net;
 using System.Net.Sockets;
+using Common;
+using Logger = Common.Logger;
 
 /// <summary>
 /// added by wsh @ 2018.01.03

@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System;
+using Common;
 using UnityEngine;
 
 public static class GenConfig
@@ -75,7 +76,7 @@ public static class GenConfig
         typeof(UnityEngine.UI.Slider),
         typeof(UIPointerClick),
         typeof(UIPointerDoubleClick),
-        typeof(UIPointerDownUp),
+        typeof(UiPointerDownUp),
         typeof(UIPointerLongPress),
 
         // easy touch

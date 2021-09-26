@@ -1,5 +1,6 @@
 ﻿using System;
 using AssetBundles;
+using Common;
 
 namespace Puerts
 {

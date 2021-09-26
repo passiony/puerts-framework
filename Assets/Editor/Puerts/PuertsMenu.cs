@@ -2,6 +2,7 @@
 using UnityEditor;
 using System.IO;
 using AssetBundles;
+using Common;
 using Puerts;
 
 [InitializeOnLoad]

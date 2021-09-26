@@ -2,6 +2,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
+using Logger = Common.Logger;
 
 /// <summary>
 /// added by wsh @ 2018.01.03

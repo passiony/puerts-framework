@@ -5,6 +5,8 @@ using System.Collections.Generic;
 using AssetBundles;
 using GameChannel;
 using System;
+using Common;
+using Logger = Common.Logger;
 
 /// <summary>
 /// added by wsh @ 2017.12.29

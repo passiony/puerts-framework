@@ -1,33 +1,34 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
 
-/// <summary>
-/// UI的双击事件
-/// </summary>
-public class UIPointerDoubleClick : MonoBehaviour,IPointerDownHandler
+namespace Common
 {
-    public UIPointerEvent onClick = new UIPointerEvent();
-
-    public float Interval = 0.5f;
-
-    private float firstClicked = 0;
-    private float secondClicked = 0;
-
-    public void OnPointerDown(PointerEventData eventData)
+    /// <summary>
+    /// UI的双击事件
+    /// </summary>
+    public class UIPointerDoubleClick : MonoBehaviour,IPointerDownHandler
     {
-        secondClicked = Time.realtimeSinceStartup;
+        public UIPointerEvent onClick = new UIPointerEvent();
 
-        if (secondClicked - firstClicked < Interval)
+        public float Interval = 0.5f;
+
+        private float firstClicked = 0;
+        private float secondClicked = 0;
+
+        public void OnPointerDown(PointerEventData eventData)
         {
-            onClick.Invoke(eventData);
+            secondClicked = Time.realtimeSinceStartup;
+
+            if (secondClicked - firstClicked < Interval)
+            {
+                onClick.Invoke(eventData);
+            }
+            else
+            {
+                firstClicked = secondClicked;
+            }
         }
-        else
-        {
-            firstClicked = secondClicked;
-        }
+
     }
-
 }

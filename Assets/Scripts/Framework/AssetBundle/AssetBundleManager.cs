@@ -5,6 +5,8 @@ using System;
 using UObject = UnityEngine.Object;
 using System.IO;
 using System.Linq;
+using Common;
+using Logger = Common.Logger;
 #if UNITY_EDITOR
 using UnityEditor;
 #endif

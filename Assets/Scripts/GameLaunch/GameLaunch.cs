@@ -3,7 +3,9 @@ using System.Collections;
 using AssetBundles;
 using GameChannel;
 using System;
+using Common;
 using Puerts;
+using Logger = Common.Logger;
 
 public class GameLaunch : MonoBehaviour
 {

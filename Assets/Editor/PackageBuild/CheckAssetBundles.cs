@@ -2,7 +2,9 @@
 using UnityEngine;
 using System.Collections;
 using AssetBundles;
+using Common;
 using UnityEditor;
+using Logger = Common.Logger;
 
 /// <summary>
 /// added by wsh @ 2018.01.03
