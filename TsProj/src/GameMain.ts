@@ -4,6 +4,7 @@ import {UnityEngine} from 'csharp'
 import { SceneManager } from './framework/scene/SceneManager';
 import { SceneConfigs } from './game/scenes/config/SceneConfig';
 import UnityTs from './framework/UnityTs';
+import { MainTest } from './UnitTest/MainTest';
 
 /**
  * 游戏入口
